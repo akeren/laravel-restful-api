@@ -5,6 +5,7 @@ use App\Http\Controllers\DeleteUserController;
 use App\Http\Controllers\GetAllUsersController;
 use App\Http\Controllers\GetUserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SignupController;
 use App\Http\Controllers\UpdateUserController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,7 @@ use Illuminate\Support\Facades\Route;
  */
 Route::prefix('v1')->group(static function () {
     Route::prefix('users')->name('user')->group(static function () {
+        Route::post('/signup', [SignupController::class, 'signup'])->name('signup');
         Route::post('/login', [LoginController::class, 'login'])->name('login');
         
         Route::group(['middleware' => 'auth:api'], static function () {
