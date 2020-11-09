@@ -25,7 +25,6 @@ use Illuminate\Support\Facades\Route;
  */
 Route::prefix('v1')->group(static function () {
     Route::prefix('users')->name('user')->group(static function () {
-        // Authentication Routes
         Route::post('/login', [LoginController::class, 'login'])->name('login');
         
         Route::get('/', [GetAllUsersController::class, 'index'])->name('index');
