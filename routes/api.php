@@ -33,7 +33,6 @@ Route::prefix('v1')->group(static function () {
         Route::post('/login', [LoginController::class, 'login'])->name('login');
         
         Route::group(['middleware' => 'auth:api'], static function () {
-
             Route::get('/me', [ProfileController::class, 'me'])->name('me');
             Route::patch('/me', [UpdateInfoController::class, 'updateInfo'] )->name('updateInfo');
             Route::patch('/updatePassword', [UpdatePasswordController::class, 'updatePassword'])->name('updatePassword');
