@@ -4,6 +4,7 @@ use App\Http\Controllers\CreateUserController;
 use App\Http\Controllers\DeleteUserController;
 use App\Http\Controllers\GetAllUsersController;
 use App\Http\Controllers\GetUserController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UpdateUserController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,10 +25,14 @@ use Illuminate\Support\Facades\Route;
  */
 Route::prefix('v1')->group(static function () {
     Route::prefix('users')->name('user')->group(static function () {
+        // Authentication Routes
+        Route::post('/login', [LoginController::class, 'login'])->name('login');
+        
         Route::get('/', [GetAllUsersController::class, 'index'])->name('index');
         Route::get('/{id}', [GetUserController::class, 'show'])->name('show');
         Route::post('/', [CreateUserController::class, 'store'])->name('store');
         Route::patch('/{id}', [UpdateUserController::class, 'update'])->name('update');
         Route::delete('/{id}', [DeleteUserController::class, 'destroy'])->name('destroy');
     });
+
 });
