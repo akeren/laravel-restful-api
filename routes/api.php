@@ -27,11 +27,13 @@ Route::prefix('v1')->group(static function () {
     Route::prefix('users')->name('user')->group(static function () {
         Route::post('/login', [LoginController::class, 'login'])->name('login');
         
-        Route::get('/', [GetAllUsersController::class, 'index'])->name('index');
-        Route::get('/{id}', [GetUserController::class, 'show'])->name('show');
-        Route::post('/', [CreateUserController::class, 'store'])->name('store');
-        Route::patch('/{id}', [UpdateUserController::class, 'update'])->name('update');
-        Route::delete('/{id}', [DeleteUserController::class, 'destroy'])->name('destroy');
+        Route::group(['middleware' => 'auth:api'], static function () {
+            Route::get('/', [GetAllUsersController::class, 'index'])->name('index');
+            Route::get('/{id}', [GetUserController::class, 'show'])->name('show');
+            Route::post('/', [CreateUserController::class, 'store'])->name('store');
+            Route::patch('/{id}', [UpdateUserController::class, 'update'])->name('update');
+            Route::delete('/{id}', [DeleteUserController::class, 'destroy'])->name('destroy');
+        });
     });
 
 });
