@@ -10,14 +10,14 @@ class GetAllUsersController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::latest()->paginate();
 
         return response([
             'status' => 'success',
             'code' => 200,
             'message' => 'Data retrieved successfully',
             'result' => $users->count(),
-            'data' => UserResource::collection($users)
+            'data' => $users
         ])->setStatusCode(Response::HTTP_OK);
     }
 }
