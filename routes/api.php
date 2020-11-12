@@ -10,6 +10,7 @@ use App\Http\Controllers\GetRoleController;
 use App\Http\Controllers\GetUserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Role\UpdateRoleController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\UpdateInfoController;
 use App\Http\Controllers\UpdatePasswordController;
@@ -42,6 +43,7 @@ Route::prefix('v1')->group(static function () {
             Route::get('/', [GetAllRolesController::class, 'index'])->name('index');
             Route::post('/', [CreateRoleController::class, 'store'])->name('store');
             Route::get('/{id}', [GetRoleController::class, 'show'])->name('show');
+            Route::patch('/{id}', [UpdateRoleController::class, 'update'])->name('update');
             Route::delete('/{id}', [DeleteRoleController::class, 'destroy'])->name('destroy');
         });
         
