@@ -15,8 +15,8 @@ class GetAllUsersController extends Controller
         return response([
             'status' => 'success',
             'code' => 200,
-            'message' => 'Data retrieved successfully',
             'result' => $users->count(),
+            'message' => 'Data retrieved successfully',
             'data' => $users
         ])->setStatusCode(Response::HTTP_OK);
     }
