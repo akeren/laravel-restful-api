@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CreateRoleController;
 use App\Http\Controllers\CreateUserController;
+use App\Http\Controllers\DeleteRoleController;
 use App\Http\Controllers\DeleteUserController;
 use App\Http\Controllers\GetAllRolesController;
 use App\Http\Controllers\GetAllUsersController;
@@ -41,6 +42,7 @@ Route::prefix('v1')->group(static function () {
             Route::get('/', [GetAllRolesController::class, 'index'])->name('index');
             Route::post('/', [CreateRoleController::class, 'store'])->name('store');
             Route::get('/{id}', [GetRoleController::class, 'show'])->name('show');
+            Route::delete('/{id}', [DeleteRoleController::class, 'destroy'])->name('destroy');
         });
         
         Route::prefix('users')->group(static function () {
