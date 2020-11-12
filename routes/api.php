@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CreateRoleController;
 use App\Http\Controllers\CreateUserController;
 use App\Http\Controllers\DeleteUserController;
 use App\Http\Controllers\GetAllUsersController;
@@ -31,8 +32,14 @@ Route::prefix('v1')->group(static function () {
     Route::prefix('users')->name('user')->group(static function () {
         Route::post('/signup', [SignupController::class, 'signup'])->name('signup');
         Route::post('/login', [LoginController::class, 'login'])->name('login');
+    });
+
+    Route::group(['middleware' => 'auth:api'], static function () {
+        Route::prefix('roles')->group(static function () {
+            Route::post('/', [CreateRoleController::class, 'store'])->name('store');
+        });
         
-        Route::group(['middleware' => 'auth:api'], static function () {
+        Route::prefix('users')->group(static function () {
             Route::get('/me', [ProfileController::class, 'me'])->name('me');
             Route::patch('/me', [UpdateInfoController::class, 'updateInfo'] )->name('updateInfo');
             Route::patch('/updatePassword', [UpdatePasswordController::class, 'updatePassword'])->name('updatePassword');
