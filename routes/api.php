@@ -5,6 +5,7 @@ use App\Http\Controllers\CreateUserController;
 use App\Http\Controllers\DeleteUserController;
 use App\Http\Controllers\GetAllRolesController;
 use App\Http\Controllers\GetAllUsersController;
+use App\Http\Controllers\GetRoleController;
 use App\Http\Controllers\GetUserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
@@ -39,6 +40,7 @@ Route::prefix('v1')->group(static function () {
         Route::prefix('roles')->group(static function () {
             Route::get('/', [GetAllRolesController::class, 'index'])->name('index');
             Route::post('/', [CreateRoleController::class, 'store'])->name('store');
+            Route::get('/{id}', [GetRoleController::class, 'show'])->name('show');
         });
         
         Route::prefix('users')->group(static function () {
