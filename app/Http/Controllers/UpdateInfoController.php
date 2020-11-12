@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class UpdateInfoController extends Controller
 {
-    public function updateInfo(Request $request)
+    public function updateInfo(UpdateUserRequest $request)
     {
         $user = Auth::user();
 
