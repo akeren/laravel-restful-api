@@ -1,15 +1,15 @@
 <?php
 
-use App\Http\Controllers\CreateRoleController;
 use App\Http\Controllers\CreateUserController;
-use App\Http\Controllers\DeleteRoleController;
 use App\Http\Controllers\DeleteUserController;
-use App\Http\Controllers\GetAllRolesController;
 use App\Http\Controllers\GetAllUsersController;
-use App\Http\Controllers\GetRoleController;
 use App\Http\Controllers\GetUserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Role\CreateRoleController;
+use App\Http\Controllers\Role\DeleteRoleController;
+use App\Http\Controllers\Role\GetAllRolesController;
+use App\Http\Controllers\Role\GetRoleController;
 use App\Http\Controllers\Role\UpdateRoleController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\UpdateInfoController;
