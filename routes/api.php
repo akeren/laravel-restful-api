@@ -1,20 +1,20 @@
 <?php
 
-use App\Http\Controllers\CreateUserController;
-use App\Http\Controllers\DeleteUserController;
-use App\Http\Controllers\GetAllUsersController;
-use App\Http\Controllers\GetUserController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\CreateUserController;
+use App\Http\Controllers\Admin\DeleteUserController;
+use App\Http\Controllers\Admin\GetAllUsersController;
+use App\Http\Controllers\Admin\GetUserController;
+use App\Http\Controllers\Admin\UpdateUserController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\ProfileController;
+use App\Http\Controllers\Auth\SignupController;
+use App\Http\Controllers\Auth\UpdateInfoController;
+use App\Http\Controllers\Auth\UpdatePasswordController;
 use App\Http\Controllers\Role\CreateRoleController;
 use App\Http\Controllers\Role\DeleteRoleController;
 use App\Http\Controllers\Role\GetAllRolesController;
 use App\Http\Controllers\Role\GetRoleController;
 use App\Http\Controllers\Role\UpdateRoleController;
-use App\Http\Controllers\SignupController;
-use App\Http\Controllers\UpdateInfoController;
-use App\Http\Controllers\UpdatePasswordController;
-use App\Http\Controllers\UpdateUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
