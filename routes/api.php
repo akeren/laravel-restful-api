@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\Auth\UpdateInfoController;
 use App\Http\Controllers\Auth\UpdatePasswordController;
+use App\Http\Controllers\Product\GetAllProductsController;
 use App\Http\Controllers\Role\CreateRoleController;
 use App\Http\Controllers\Role\DeleteRoleController;
 use App\Http\Controllers\Role\GetAllRolesController;
@@ -38,6 +39,7 @@ Route::prefix('v1')->group(static function () {
         Route::post('/login', [LoginController::class, 'login'])->name('login');
     });
 
+    
     Route::group(['middleware' => 'auth:api'], static function () {
         Route::prefix('roles')->group(static function () {
             Route::get('/', [GetAllRolesController::class, 'index'])->name('index');
@@ -45,6 +47,10 @@ Route::prefix('v1')->group(static function () {
             Route::get('/{id}', [GetRoleController::class, 'show'])->name('show');
             Route::patch('/{id}', [UpdateRoleController::class, 'update'])->name('update');
             Route::delete('/{id}', [DeleteRoleController::class, 'destroy'])->name('destroy');
+        });
+        
+        Route::prefix('products')->group(static function () {
+            Route::get('/', [GetAllProductsController::class, 'index'])->name('index');
         });
         
         Route::prefix('users')->group(static function () {
