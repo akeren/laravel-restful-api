@@ -13,8 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         \App\Models\User::factory(20)->create();
-         \App\Models\Role::factory(10)->create();
+        \App\Models\Role::factory(1)->create(['name' => 'Admin']);
+        \App\Models\Role::factory(1)->create(['name' => 'Editor']);
+        \App\Models\Role::factory(1)->create(['name' => 'Viewer']);
+        \App\Models\User::factory(20)->create();
 
     }
 }
