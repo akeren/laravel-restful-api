@@ -18,6 +18,7 @@ class CreateUserController extends Controller
             'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => Hash::make('password'),
+            'role_id' => $request->role_id,
         ]);
 
         if(!$user) {

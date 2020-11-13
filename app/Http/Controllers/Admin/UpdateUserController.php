@@ -14,7 +14,7 @@ class UpdateUserController extends Controller
     {
         $user = User::find($id);
 
-        if(!$user->update($request->only('first_name', 'last_name', 'email'))) {
+        if(!$user->update($request->only('first_name', 'last_name', 'email', 'role_id'))) {
             return response([
                 'status' => 'fail',
                 'code' => 304,
