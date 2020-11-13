@@ -10,7 +10,7 @@ class GetAllProductsController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $products = Product::paginate();
 
         return ProductResource::collection($products);
     }
