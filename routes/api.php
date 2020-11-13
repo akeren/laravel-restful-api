@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\Auth\UpdateInfoController;
 use App\Http\Controllers\Auth\UpdatePasswordController;
+use App\Http\Controllers\Product\DeleteProductController;
 use App\Http\Controllers\Product\GetAllProductsController;
 use App\Http\Controllers\Product\GetProductController;
 use App\Http\Controllers\Role\CreateRoleController;
@@ -53,6 +54,7 @@ Route::prefix('v1')->group(static function () {
         Route::prefix('products')->group(static function () {
             Route::get('/', [GetAllProductsController::class, 'index'])->name('index');
             Route::get('/{id}', [GetProductController::class, 'show'])->name('show');
+            Route::delete('/{id}', [DeleteProductController::class, 'destroy'])->name('destroy');
         });
         
         Route::prefix('users')->group(static function () {
