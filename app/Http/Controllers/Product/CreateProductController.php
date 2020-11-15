@@ -3,25 +3,17 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
-use Illuminate\Http\Request;
 use Str;
 
 class CreateProductController extends Controller
 {
-    public function store(Request $request)
+    public function store(CreateProductRequest $request)
     {
-        $imageFile = $request->file('image');
-        $imageName = Str::random(10);
-        $savedImageUrl = \Storage::putFileAs('images', $imageFile, $imageName.'.'.$imageFile->extension());
-
-        $product = Product::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'image' => env('APP_URL').'/'.$savedImageUrl,
-            'price' => $request->price,
-        ]);
+       
+        $product = Product::create($request->only('title', 'description', 'image', 'price'));
 
         if(!$product) {
             return response([
