@@ -11,6 +11,8 @@ use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\Auth\UpdateInfoController;
 use App\Http\Controllers\Auth\UpdatePasswordController;
 use App\Http\Controllers\Image\ImageController;
+use App\Http\Controllers\Order\GetAllOrdersController;
+use App\Http\Controllers\Order\GetOrderController;
 use App\Http\Controllers\Product\CreateProductController;
 use App\Http\Controllers\Product\DeleteProductController;
 use App\Http\Controllers\Product\GetAllProductsController;
@@ -64,6 +66,11 @@ Route::prefix('v1')->group(static function () {
             Route::get('/{id}', [GetProductController::class, 'show'])->name('show');
             Route::patch('/{id}', [UpdateProductController::class, 'update'])->name('update');
             Route::delete('/{id}', [DeleteProductController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::prefix('orders')->group(static function () {
+            Route::get('/', [GetAllOrdersController::class, 'index'])->name('index');
+            Route::get('/{id}', [GetOrderController::class, 'show'])->name('show');
         });
         
         Route::prefix('users')->group(static function () {
