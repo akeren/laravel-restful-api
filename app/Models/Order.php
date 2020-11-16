@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $total
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OrderItem[] $orderItems
  * @property-read int|null $order_items_count
+ * @property-read mixed $name
  */
 class Order extends Model
 {
