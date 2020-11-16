@@ -45,4 +45,9 @@ class Order extends Model
             return $item->price * $item->quantity;
         });
     }
+
+    public function getNameAttribute() 
+    {
+        return $this->first_name.' '.$this->last_name;
+    }
 }
