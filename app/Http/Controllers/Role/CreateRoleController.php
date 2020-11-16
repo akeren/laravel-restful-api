@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateRoleRequest;
 use App\Http\Resources\RoleResource;
 use App\Models\Role;
+use App\Models\RolePermission;
 use Symfony\Component\HttpFoundation\Response;
 
 class CreateRoleController extends Controller
@@ -13,6 +14,15 @@ class CreateRoleController extends Controller
     public function store(CreateRoleRequest $request)
     {
         $role = Role::create($request->only('name'));
+
+        if($permissions = $request->permissions) {
+            foreach($permissions as $permissionId) {
+                RolePermission::insert([
+                    'role_id' => $role->id,
+                    'permission_id' => $permissionId,
+                ]);
+            }
+        }
 
         if(!$role) {
             return response([
