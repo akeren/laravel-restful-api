@@ -12,6 +12,8 @@ class UpdateUserController extends Controller
 {
     public function update(UpdateUserRequest $request, $id)
     {
+        \Gate::authorize('edit', 'users');
+        
         $user = User::find($id);
 
         if(!$user->update($request->only('first_name', 'last_name', 'email', 'role_id'))) {

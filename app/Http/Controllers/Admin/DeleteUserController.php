@@ -10,6 +10,8 @@ class DeleteUserController extends Controller
 {
     public function destroy($id) 
     {
+        \Gate::authorize('edit', 'users');
+        
         $user = User::destroy($id);
 
         if(!$user) {

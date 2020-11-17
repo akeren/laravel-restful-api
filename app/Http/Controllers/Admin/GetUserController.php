@@ -11,6 +11,8 @@ class GetUserController extends Controller
 {
     public function show($id)
     {
+        \Gate::authorize('view', 'users');
+        
         $user = User::find($id);
 
         if(!$user) {
