@@ -13,11 +13,21 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        return response([
+        return (new UserResource($user))->additional([
+                'data' => [
+                    'permissions' => $user->permissions(),
+                ],
+            ]);
+
+/*         return response([
             'status' => 'success',
             'code' => 200,
             'message' => 'Profile info',
-            'data' => new UserResource($user),
-        ])->setStatusCode(Response::HTTP_OK);
+            'data' => (new UserResource($user))->additional([
+                'data' => [
+                    'permissions' => $user->permissions(),
+                ],
+            ]),
+        ])->setStatusCode(Response::HTTP_OK); */
     }
 }
