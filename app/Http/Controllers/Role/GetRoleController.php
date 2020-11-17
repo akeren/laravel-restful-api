@@ -11,6 +11,8 @@ class GetRoleController extends Controller
 {
     public function show($id)
     {
+        \Gate::authorize('view', 'roles');
+        
         $role = Role::find($id);
 
         if(!$role) {

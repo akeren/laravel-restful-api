@@ -10,6 +10,8 @@ class GetProductController extends Controller
 {
     public function show($id)
     {
+        \Gate::authorize('view', 'products');
+
         $product = Product::find($id);
 
         return response([

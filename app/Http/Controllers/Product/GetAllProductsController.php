@@ -10,7 +10,9 @@ class GetAllProductsController extends Controller
 {
     public function index()
     {
-        $products = Product::paginate();
+        \Gate::authorize('view', 'products');
+
+        $products = Product::latest()->paginate();
 
         return ProductResource::collection($products);
     }

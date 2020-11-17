@@ -12,6 +12,8 @@ class UpdateRoleController extends Controller
 {
     public function update(Request $request,$id)
     {
+        \Gate::authorize('edit','roles');
+        
         $role = Role::find($id);
 
         if(!$role->update($request->only('name'))) {

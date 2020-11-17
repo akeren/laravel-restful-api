@@ -10,6 +10,8 @@ class DeleteRoleController extends Controller
 {
     public function destroy($id)
     {
+        \Gate::authorize('edit', 'roles');
+        
         $role = Role::destroy($id);
         RolePermission::whereRoleId($id)->delete();
 

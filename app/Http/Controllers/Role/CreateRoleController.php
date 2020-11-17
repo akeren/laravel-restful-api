@@ -13,6 +13,8 @@ class CreateRoleController extends Controller
 {
     public function store(CreateRoleRequest $request)
     {
+        \Gate::authorize('edit', 'roles');
+        
         $role = Role::create($request->only('name'));
 
         if($permissions = $request->permissions) {

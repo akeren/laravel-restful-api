@@ -12,6 +12,8 @@ class UpdateProductController extends Controller
 {
     public function update(Request $request,$id)
     {
+        \Gate::authorize('edit', 'products');
+
         $product = Product::find($id);
 
         if(!$product->update($request->only('title', 'description', 'image', 'price'))) {

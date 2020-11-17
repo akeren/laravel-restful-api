@@ -11,6 +11,8 @@ class GetAllRolesController extends Controller
 {
     public function index()
     {
+        \Gate::authorize('view', 'roles');
+        
         $roles = Role::all();
 
         return response([

@@ -9,6 +9,8 @@ class ExportOrdersController extends Controller
 {
     public function exportOrdersToCSV() 
     {
+        \Gate::authorize('view', 'orders');
+        
         $headers = [
             'Content-type' => 'text/csv',
             'Content-Disposition' => 'attachment; filename=orders.csv',

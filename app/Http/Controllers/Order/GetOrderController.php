@@ -10,6 +10,8 @@ class GetOrderController extends Controller
 {
     public function show($id)
     {
+        \Gate::authorize('view', 'orders');
+        
         $order = Order::find($id);
 
         return response([

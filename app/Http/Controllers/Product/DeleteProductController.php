@@ -9,6 +9,8 @@ class DeleteProductController extends Controller
 {
     public function destroy($id)
     {
+        \Gate::authorize('edit', 'products');
+
         $product = Product::destroy($id);
 
         return response([

@@ -12,6 +12,7 @@ class CreateProductController extends Controller
 {
     public function store(CreateProductRequest $request)
     {
+       \Gate::authorize('edit', 'products');
        
         $product = Product::create($request->only('title', 'description', 'image', 'price'));
 
