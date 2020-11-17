@@ -16,6 +16,14 @@ class UpdateUserController extends Controller
         
         $user = User::find($id);
 
+        if(!$user) {
+            return response([
+                'status' => 'fail',
+                'code' => 400,
+                'message' => 'No user associated with that ID found!'
+            ])->setStatusCode(Response::HTTP_BAD_REQUEST);
+        }
+
         if(!$user->update($request->only('first_name', 'last_name', 'email', 'role_id'))) {
             return response([
                 'status' => 'fail',
