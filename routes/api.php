@@ -11,6 +11,7 @@ use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\Auth\UpdateInfoController;
 use App\Http\Controllers\Auth\UpdatePasswordController;
 use App\Http\Controllers\Image\ImageController;
+use App\Http\Controllers\Order\ChartOrderController;
 use App\Http\Controllers\Order\ExportOrdersController;
 use App\Http\Controllers\Order\GetAllOrdersController;
 use App\Http\Controllers\Order\GetOrderController;
@@ -73,7 +74,8 @@ Route::prefix('v1')->group(static function () {
             Route::get('/', [GetAllOrdersController::class, 'index'])->name('index');
             Route::get('/{id}', [GetOrderController::class, 'show'])->name('show');
         });
-
+        
+        Route::get('/charts', [ChartOrderController::class, 'chart'])->name('chart');
         Route::get('/exportOrders', [ExportOrdersController::class, 'exportOrdersToCSV'])->name('export');
 
         
