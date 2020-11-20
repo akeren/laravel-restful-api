@@ -93,3 +93,14 @@ Route::prefix('v1')->group(static function () {
     });
 
 });
+
+/**
+ * Unhandled Route
+ */
+Route::fallback(function() {
+    return response([
+        'status' => 'fail',
+        'code' => 404,
+        'message' => 'Page Not Found. If error persists, contact akeren.dev@gmail.com',
+    ])->setStatusCode(404);
+});
