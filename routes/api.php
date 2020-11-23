@@ -47,7 +47,6 @@ Route::prefix('v1')->group(static function () {
         Route::post('/signup', [SignupController::class, 'signup'])->name('signup');
         Route::post('/login', [LoginController::class, 'login'])->name('login');
     });
-
     
     Route::group(['middleware' => 'auth:api'], static function () {
         Route::prefix('roles')->group(static function () {
@@ -97,7 +96,7 @@ Route::prefix('v1')->group(static function () {
 /**
  * Unhandled Route
  */
-Route::fallback(function() {
+Route::fallback(static function() {
     return response([
         'status' => 'fail',
         'code' => 404,

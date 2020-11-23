@@ -8,6 +8,14 @@ use App\Models\User;
 
 class GetAllUsersController extends Controller
 {
+    /**
+     * @OA\Get(path="/users",
+     *      security={{ "bearerAuth":{} }},
+     *      @OA\Response(response="200",
+     *          description="User Collection",
+     *      )
+     * )
+     */
     public function index()
     {
         \Gate::authorize('view', 'users');

@@ -1,0 +1,45 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Admin API Documentation",
+        "description": "This is an administrator API for an ecomerce store.",
+        "contact": {
+            "email": "akeren.dev@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api/v1",
+            "description": "Admin API server"
+        }
+    ],
+    "paths": {
+        "/users": {
+            "get": {
+                "operationId": "App\\Http\\Controllers\\Admin\\GetAllUsersController::index",
+                "responses": {
+                    "200": {
+                        "description": "User Collection"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
