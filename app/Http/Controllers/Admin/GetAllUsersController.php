@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class GetAllUsersController extends Controller
 {
@@ -20,7 +21,12 @@ class GetAllUsersController extends Controller
     {
         \Gate::authorize('view', 'users');
         
-        $users = User::latest()->paginate();
+        $users = QueryBuilder::for(User::class)
+        ->allowedFilters(['first_name', 'last_name', 'email'])
+        ->jsonPaginate()
+        ->appends(request()->query());
+
+
 
         return UserResource::collection($users);
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Product;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class GetAllProductsController extends Controller
 {
@@ -12,8 +13,12 @@ class GetAllProductsController extends Controller
     {
         \Gate::authorize('view', 'products');
 
-        $products = Product::latest()->paginate();
-
+        $products = QueryBuilder::for(Product::class)
+        ->allowedFilters(['title', 'price'])
+        ->latest()
+        ->jsonPaginate()
+        ->appends(request()->query());
+        
         return ProductResource::collection($products);
     }
 }
