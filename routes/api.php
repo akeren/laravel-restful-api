@@ -43,7 +43,7 @@ use Illuminate\Support\Facades\Route;
  * @author Kater, Akeren
  */
 Route::prefix('v1')->group(static function () {
-    Route::prefix('users')->name('user')->group(static function () {
+    Route::prefix('users')->name('user.')->group(static function () {
         Route::post('/signup', [SignupController::class, 'signup'])->name('signup');
         Route::post('/login', [LoginController::class, 'login'])->name('login');
     });

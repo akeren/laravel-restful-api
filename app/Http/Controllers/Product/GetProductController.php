@@ -14,6 +14,14 @@ class GetProductController extends Controller
 
         $product = Product::find($id);
 
+        if(!$product) {
+            return response([
+                'status' => 'fail',
+                'code' => 404,
+                'message' => 'No product with the associated ID found.',
+            ])->setStatusCode(404);
+        }
+
         return response([
             'status' => 'success',
             'code' => 200,

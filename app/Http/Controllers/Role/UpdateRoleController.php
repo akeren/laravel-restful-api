@@ -16,6 +16,14 @@ class UpdateRoleController extends Controller
         
         $role = Role::find($id);
 
+        if(!$role) {
+            return response([
+                'status' => 'fail',
+                'code' => 404,
+                'message' => 'No role with the associated ID found.',
+            ])->setStatusCode(404);
+        }
+
         if(!$role->update($request->only('name'))) {
             return response([
                 'status' => 'fail',

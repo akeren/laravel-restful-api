@@ -14,6 +14,14 @@ class GetOrderController extends Controller
         
         $order = Order::find($id);
 
+        if(!$order) {
+            return response([
+                'status' => 'fail',
+                'code' => 404,
+                'message' => 'Unable to retrieved order.',
+            ])->setStatusCode(404);
+        }
+
         return response([
             'status' => 'success',
             'code' => 200,

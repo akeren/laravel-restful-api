@@ -16,6 +16,14 @@ class UpdateProductController extends Controller
 
         $product = Product::find($id);
 
+        if(!$product) {
+            return response([
+                'status' => 'fail',
+                'code' => 404,
+                'message' => 'No product with the associated ID found.',
+            ])->setStatusCode(404);
+        }
+        
         if(!$product->update($request->only('title', 'description', 'image', 'price'))) {
             return response([
                 'status' => 'fail',

@@ -15,6 +15,14 @@ class DeleteRoleController extends Controller
         $role = Role::destroy($id);
         RolePermission::whereRoleId($id)->delete();
 
+        if(!$role) {
+            return response([
+                'status' => 'fail',
+                'code' => 404,
+                'message' => 'No role with the associated ID found.',
+            ])->setStatusCode(404);
+        }
+
         return response([
             'status' => 'success',
             'code' => 204,
