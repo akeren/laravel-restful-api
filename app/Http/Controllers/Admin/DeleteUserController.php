@@ -8,19 +8,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DeleteUserController extends Controller
 {
-    public function destroy($id) 
+    public function destroy(User $user) 
     {
         \Gate::authorize('edit', 'users');
         
-        $user = User::destroy($id);
-
-        if(!$user) {
-            return response([
-                'status' => 'fail',
-                'code' => 400,
-                'message' => 'Unable perform delete action.',
-            ])->setStatusCode(Response::HTTP_BAD_REQUEST);
-        }
+        $user->delete();
 
         return response([
             'status' => 'success',

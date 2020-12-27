@@ -10,19 +10,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UpdateProductController extends Controller
 {
-    public function update(Request $request,$id)
+    public function update(Request $request, Product $product)
     {
         \Gate::authorize('edit', 'products');
-
-        $product = Product::find($id);
-
-        if(!$product) {
-            return response([
-                'status' => 'fail',
-                'code' => 404,
-                'message' => 'No product with the associated ID found.',
-            ])->setStatusCode(404);
-        }
         
         if(!$product->update($request->only('title', 'description', 'image', 'price'))) {
             return response([

@@ -10,25 +10,15 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UpdateUserController extends Controller
 {
-    public function update(UpdateUserRequest $request, $id)
+    public function update(UpdateUserRequest $request, User $user)
     {
         \Gate::authorize('edit', 'users');
         
-        $user = User::find($id);
-
-        if(!$user) {
-            return response([
-                'status' => 'fail',
-                'code' => 404,
-                'message' => 'No user associated with that ID found!'
-            ])->setStatusCode(Response::HTTP_NOT_FOUND);
-        }
-
         if(!$user->update($request->only('first_name', 'last_name', 'email', 'role_id'))) {
             return response([
                 'status' => 'fail',
                 'code' => 304,
-                'message' => 'Operation failed. Try again!',
+                'message' => 'Unable to update details. Try again!',
             ])->setStatusCode(Response::HTTP_NOT_MODIFIED);
         }
 

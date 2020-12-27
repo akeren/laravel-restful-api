@@ -10,20 +10,10 @@ use Illuminate\Http\Request;
 
 class UpdateRoleController extends Controller
 {
-    public function update(Request $request,$id)
+    public function update(Request $request, Role $role)
     {
         \Gate::authorize('edit','roles');
         
-        $role = Role::find($id);
-
-        if(!$role) {
-            return response([
-                'status' => 'fail',
-                'code' => 404,
-                'message' => 'No role with the associated ID found.',
-            ])->setStatusCode(404);
-        }
-
         if(!$role->update($request->only('name'))) {
             return response([
                 'status' => 'fail',

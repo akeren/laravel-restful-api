@@ -9,20 +9,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class GetUserController extends Controller
 {
-    public function show($id)
+    public function show(User $user)
     {
         \Gate::authorize('view', 'users');
         
-        $user = User::find($id);
-
-        if(!$user) {
-            return response([
-                'status' => 'fail',
-                'code' => 404,
-                'message' => 'No user associated with that ID found!'
-            ])->setStatusCode(Response::HTTP_NOT_FOUND);
-        }
-
         return response([
             'status' => 'success',
             'code' => 200,

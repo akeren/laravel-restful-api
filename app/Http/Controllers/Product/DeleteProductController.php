@@ -7,19 +7,11 @@ use App\Models\Product;
 
 class DeleteProductController extends Controller
 {
-    public function destroy($id)
+    public function destroy(Product $product)
     {
         \Gate::authorize('edit', 'products');
 
-        $product = Product::destroy($id);
-
-        if(!$product) {
-            return response([
-                'status' => 'fail',
-                'code' => 404,
-                'message' => 'No product with the associated ID found.',
-            ])->setStatusCode(404);
-        }
+        $product->delete();
 
         return response([
             'status' => 'success',

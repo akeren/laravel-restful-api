@@ -8,21 +8,13 @@ use App\Models\RolePermission;
 
 class DeleteRoleController extends Controller
 {
-    public function destroy($id)
+    public function destroy(Role $role)
     {
         \Gate::authorize('edit', 'roles');
         
-        $role = Role::destroy($id);
-        RolePermission::whereRoleId($id)->delete();
-
-        if(!$role) {
-            return response([
-                'status' => 'fail',
-                'code' => 404,
-                'message' => 'No role with the associated ID found.',
-            ])->setStatusCode(404);
-        }
-
+        $role->delete();
+        RolePermission::whereRoleId($role->id)->delete();
+        
         return response([
             'status' => 'success',
             'code' => 204,

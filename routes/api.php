@@ -52,9 +52,9 @@ Route::prefix('v1')->group(static function () {
         Route::prefix('roles')->group(static function () {
             Route::get('/', [GetAllRolesController::class, 'index'])->name('index');
             Route::post('/', [CreateRoleController::class, 'store'])->name('store');
-            Route::get('/{id}', [GetRoleController::class, 'show'])->name('show');
-            Route::patch('/{id}', [UpdateRoleController::class, 'update'])->name('update');
-            Route::delete('/{id}', [DeleteRoleController::class, 'destroy'])->name('destroy');
+            Route::get('/{role}', [GetRoleController::class, 'show'])->name('show');
+            Route::patch('/{role}', [UpdateRoleController::class, 'update'])->name('update');
+            Route::delete('/{role}', [DeleteRoleController::class, 'destroy'])->name('destroy');
         });
         
         Route::prefix('uploads')->group(static function () {
@@ -64,9 +64,9 @@ Route::prefix('v1')->group(static function () {
         Route::prefix('products')->group(static function () {
             Route::get('/', [GetAllProductsController::class, 'index'])->name('index');
             Route::post('/', [CreateProductController::class, 'store'])->name('store');
-            Route::get('/{id}', [GetProductController::class, 'show'])->name('show');
-            Route::patch('/{id}', [UpdateProductController::class, 'update'])->name('update');
-            Route::delete('/{id}', [DeleteProductController::class, 'destroy'])->name('destroy');
+            Route::get('/{product}', [GetProductController::class, 'show'])->name('show');
+            Route::patch('/{product}', [UpdateProductController::class, 'update'])->name('update');
+            Route::delete('/{product}', [DeleteProductController::class, 'destroy'])->name('destroy');
         });
 
         Route::prefix('orders')->group(static function () {
@@ -84,22 +84,11 @@ Route::prefix('v1')->group(static function () {
             Route::patch('/updatePassword', [UpdatePasswordController::class, 'updatePassword'])->name('updatePassword');
             
             Route::get('/', [GetAllUsersController::class, 'index'])->name('index');
-            Route::get('/{id}', [GetUserController::class, 'show'])->name('show');
+            Route::get('/{user}', [GetUserController::class, 'show'])->name('show');
             Route::post('/', [CreateUserController::class, 'store'])->name('store');
-            Route::patch('/{id}', [UpdateUserController::class, 'update'])->name('update');
-            Route::delete('/{id}', [DeleteUserController::class, 'destroy'])->name('destroy');
+            Route::patch('/{user}', [UpdateUserController::class, 'update'])->name('update');
+            Route::delete('/{user}', [DeleteUserController::class, 'destroy'])->name('destroy');
         });
     });
 
-});
-
-/**
- * Unhandled Route
- */
-Route::fallback(static function() {
-    return response([
-        'status' => 'fail',
-        'code' => 404,
-        'message' => 'Page Not Found. If error persists, contact akeren.dev@gmail.com',
-    ])->setStatusCode(404);
 });
